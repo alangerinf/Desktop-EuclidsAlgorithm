@@ -22,11 +22,27 @@ public class Escenario {
     
     private List<Integer> ite = new ArrayList<Integer>();
     
+    private List<Long> resp = new  ArrayList<Long>();
+    
+    
+    public List<Long> getResp() {
+        return resp;
+    }
+    
     public void addCaso(long A,long B){
         long x[] = new long[2];
             x[0] = A;
             x[1] = B;
         getCasos().add(x);
+     
+        resp.add(Euclides.euclides1(A, B));
+        
+        int i = (int) Euclides.euclides1NIte(A, B);
+        getIte().add(i);
+        i = (int) Euclides.euclides2NIte(A, B);
+        getIte().add(i);
+        i = (int) Euclides.euextendNIte(A, B);
+        getIte().add(i);
     }
 
     /**
@@ -49,7 +65,6 @@ public class Escenario {
     public void setIte(List<Integer> ite) {
         this.ite = ite;
     }
-
     /**
      * @return the casos
      */

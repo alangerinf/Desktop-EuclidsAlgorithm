@@ -86,18 +86,48 @@ public class Euclides {
         }
         return a;
     }
+    static long euclides1NIte(long a, long b){
+       int i=0;  
+            i++;
+            System.out.println(" ==> iteracion :"+i);
+            System.out.println("                a="+a+", b="+b);
+        long r;
+        while(b!=0){
+            i++;
+            r= a%b;
+            a=b;
+            b=r;
+            System.out.println(" ==> iteracion :"+i);
+            System.out.println("                a="+a+", b="+b);
+        }
+        return i;
+    }
+    
     static int iter=0;
     static long euclides2(long ma, long me){
         iter++;
         System.out.println(" ==> iteracion :"+iter);
         System.out.println("                a="+ma+", b="+me);
         if(me==0){
+            iter=0;
             return ma;
         }else{
             return euclides2(me,ma%me);
         }
     }
     
+    static long euclides2NIte(long ma, long me){
+        iter++;
+        System.out.println(" ==> iteracion :"+iter);
+        System.out.println("                a="+ma+", b="+me);
+        if(me==0){
+            int temp= iter;
+            iter=0;
+            return temp;
+        }else{
+            return euclides2(me,ma%me);
+        }
+    }
     
     static long euextend(long a,long b){
         int i=0;
@@ -125,6 +155,36 @@ public class Euclides {
             System.out.println("           d="+d+" , x="+x+" , y="+y);
             }
             return d;
+            
+        }
+    }
+    
+    static long euextendNIte(long a,long b){
+        int i=0;
+        long d=0, x=1,y=1;
+        if(b==0){
+            i++;
+            d=a;
+            x=1;
+            y=1;
+            System.out.println(" ==> iteracion :"+i);
+            System.out.println("           d="+d+" , x="+x+" , y="+y);
+            return d;
+        }else{
+            long x1=0,x2=1,y1=1,y2=0;
+            long q, r;
+            while(b>0){
+                i++;
+                q=a/b; r=a-q*b;
+                x=x2-q*x1; y= y2-q*y1;
+                a  = b  ; b=r;
+                x2 = x1 ; x1 = x ;
+                y2 = y1 ; y1 = y ;
+                d  = a  ; x  = y2; y = y2;
+                System.out.println(" ==> iteracion :"+i);
+            System.out.println("           d="+d+" , x="+x+" , y="+y);
+            }
+            return i;
             
         }
     }
